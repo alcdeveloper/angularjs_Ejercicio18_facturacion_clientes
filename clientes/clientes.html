@@ -1,0 +1,45 @@
+<ol class="breadcrumb">
+	<li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+	<li class="active">Clientes</li>
+</ol> 
+
+<a href="" class="btn btn-primary" ng-click="mostrarModal({})"><i class="fa fa-plus"></i>Agregar clientes</a>
+<div class="row">
+	<div class="col-md-12">
+		<table class="table table-borderesd">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Nombre</th>
+					<th>Correo</th>
+					<th>Telefono 1</th>
+					<th>Telefono 2</th>
+					<th>Editar</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat = "cliente in clientes.clientes">
+					<td>{{ cliente.id }}</td>
+					<td> {{ cliente.nombre }}</td>
+					<td>{{ cliente.correo }}</td>
+					<td>{{ cliente.telefono1 }}</td>
+					<td>{{ cliente.telefono2 }}</td>
+					<td><a ng-click="mostrarModal( cliente)" href="" class="btn btn-warning"><i class="fa fa-edit"></i></td>
+				</tr>
+			</tbody>
+		</table>
+		<ul class="pagination pagination-sm mo-margin pull-right">
+			<li><a href="#/clientes/1" ng-click="moverA(1)"><<</a></li>
+
+			<li ng-repeat="pag in clientes.paginas" ng-class="{ 'active' : clientes.pag_actual === pag }"><a href="#/clientes/{{pag}}"  ng-click="moverA(pag)">{{ pag }}</a></li>
+
+			<li><a href="#/clientes/{{clientes.total_paginas}}" ng-click="moverA(clientes.total_paginas)">>></a></li>
+			
+		</ul>
+	</div>	
+
+
+</div>
+
+
+<div ng-include="template/modal_cliente.html"></div>
